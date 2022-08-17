@@ -4,7 +4,7 @@
 >
 > 书写此项目时使用到的各个工具版本参考`documents/dev_requirements.txt`文件。
 >
-> 项目采用Tortoise-orm
+> 项目采用Tortoise-orm,以CBV视图形式提供接口
 ## 1 项目结构
 
 本项目目录结构如下，其中`*`标为目录，以下出现的目录为项目必须文件，不允许添加git忽略：
