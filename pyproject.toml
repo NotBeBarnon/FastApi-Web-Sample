@@ -1,0 +1,53 @@
+[tool]
+[tool.commitizen]
+name = "cz_conventional_commits"
+version = "1.0.0"
+tag_format = "$version-sample"
+use_shortcuts = true
+update_changelog_on_bump = true
+annotated_tag = true
+
+[tool.aerich]
+tortoise_orm = "src.settings.DATABASE_CONFIG"
+location = "./migrations"
+src_folder = "./."
+
+[tool.cx_freeze]
+include_files = ["project_env", "pyproject.toml"]
+includes = ["src.faster"]
+excludes = []
+packages = []
+
+[tool.build_docker]
+dockerfile = "docker/build_dockerfile" # dockerfile路径，相对于项目根目录
+docker_repo = "xxxx/fast_sample" # docker镜像的REPOSITORY，注意不要有大写字符
+
+[myproject]
+dev = false
+http_api_listen_host = "0.0.0.0"
+http_api_listen_port = 8080
+http_base_url = "/api/sample"
+
+[myproject.log]
+level = "debug"
+retention = 24  # 日志保留时间，单位 时
+file_path = "logs" # 日志保存路径，相对于根目录
+file_level = "success"
+access_console_log = "info" # FastAPI的访问日志级别，如果设置为""，则不记录
+access_file_log = "" # 同上 FastAPI的访问日志是以INFO级别输出的
+
+[myproject.database]
+db_name = "FastSample" # 数据库名称，如果有环境变量，则以环境变量为准，否则以配置文件为准
+minsize = 1
+maxsize = 4
+pool_recycle = 3600 # 连接池回收时间，单位 秒， 透传参数
+[myproject.database.master]
+host = "localhost"
+port = 3306
+user = "root"
+password = "123456"
+[myproject.database.slave]
+host = "localhost"
+port = 3306
+user = "root"
+password = "123456"
